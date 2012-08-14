@@ -30,6 +30,7 @@
 #import "WBErrorNoticeView.h"
 #import "WBSuccessNoticeView.h"
 #import "WBStickyNoticeView.h"
+#import "WBWarningNoticeView.h"
 
 @interface WBViewController ()
 
@@ -141,6 +142,13 @@
     [notice show];
     
     [self.navigationController pushViewController: [[WBViewController alloc] init] animated:YES];
+}
+
+- (IBAction)showSmallWarningNotice:(id)sender
+{
+    WBWarningNoticeView *notice = [WBWarningNoticeView warningNoticeInView:self.view title:@"Something went wrong!"];
+
+    [notice show];
 }
 
 @end

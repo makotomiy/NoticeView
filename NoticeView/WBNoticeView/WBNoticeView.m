@@ -11,6 +11,7 @@
 #import "WBRedGradientView.h"
 #import "WBBlueGradientView.h"
 #import "WBGrayGradientView.h"
+#import "WBYellowGradientView.h"
 #import "UILabel+WBExtensions.h"
 
 #import <QuartzCore/QuartzCore.h>
@@ -50,6 +51,14 @@
                          delay:(float)delay
                          alpha:(float)alpha
                        yOrigin:(CGFloat)origin;
+
+- (void)_showWarningNoticeInView:(UIView *)view
+                           title:(NSString *)title
+                         message:(NSString *)message
+                        duration:(float)duration
+                           delay:(float)delay
+                           alpha:(float)alpha
+                         yOrigin:(CGFloat)origin;
 
 - (void)displayNoticeOfType:(WBNoticeViewType)noticeType
                    duration:(CGFloat)duration
@@ -204,6 +213,38 @@
                     yOrigin:origin];
 }
 
+#pragma mark -
+
+- (void)showWarningNoticeInView:(UIView *)view
+                        message:(NSString *)message
+{
+    [self _showNoticeOfType:WBNoticeViewTypeWarning
+                       view:view
+                      title:message
+                    message:nil
+                   duration:0.0
+                      delay:0.0
+                      alpha:0.8
+                    yOrigin:0.0];
+}
+
+- (void)showWarningNoticeInView:(UIView *)view
+                         message:(NSString *)message
+                        duration:(float)duration
+                           delay:(float)delay
+                           alpha:(float)alpha
+                         yOrigin:(CGFloat)origin
+{
+    [self _showNoticeOfType:WBNoticeViewTypeWarning
+                       view:view
+                      title:message
+                    message:nil
+                   duration:duration
+                      delay:delay
+                      alpha:alpha
+                    yOrigin:origin];
+}
+
 #pragma mark - Private Section
 
 - (void)_showNoticeOfType:(WBNoticeViewType)noticeType
@@ -236,6 +277,10 @@
                 
             case WBNoticeViewTypeSticky:
                 [self _showStickyNoticeInView:view title:title message:message duration:duration delay:delay alpha:alpha yOrigin:origin];
+                break;
+            
+            case WBNoticeViewTypeWarning:
+                [self _showWarningNoticeInView:view title:title message:message duration:duration delay:delay alpha:alpha yOrigin:origin];
                 break;
         }
     }
@@ -494,6 +539,74 @@
     NSLog(@"%@", self.noticeView.subviews);
     
     [self displayNoticeOfType:WBNoticeViewTypeSticky duration:duration delay:delay origin:origin hiddenYOrigin:hiddenYOrigin alpha:alpha];
+}
+
+- (void)_showWarningNoticeInView:(UIView *)view
+                         title:(NSString *)title
+                       message:(NSString *)message
+                      duration:(float)duration
+                         delay:(float)delay
+                         alpha:(float)alpha
+                       yOrigin:(CGFloat)origin
+{
+    // Obtain the screen width
+    CGFloat viewWidth = view.frame.size.width;
+    
+    // Locate the images
+    NSString *path = [[[NSBundle mainBundle]resourcePath]stringByAppendingPathComponent:@"NoticeView.bundle"];
+    NSString *noticeIconImageName = [path stringByAppendingPathComponent:@"notice_error_icon.png"];
+    
+    NSInteger numberOfLines = 1;
+    CGFloat messageLineHeight = 30.0;
+    
+    // Make and add the title label
+    float titleYOrigin = 18.0;
+    self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(55.0, titleYOrigin, viewWidth - 70.0, 16.0)];
+    self.titleLabel.textColor = [UIColor whiteColor];
+    self.titleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
+    self.titleLabel.shadowColor = [UIColor blackColor];
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:14.0];
+    self.titleLabel.backgroundColor = [UIColor clearColor];
+    self.titleLabel.text = title;
+    
+    // Calculate the notice view height
+    float noticeViewHeight = 40.0;
+    float hiddenYOrigin = 0.0;
+    if (numberOfLines > 1) {
+        noticeViewHeight += (numberOfLines - 1) * messageLineHeight;
+    }
+    
+    // Make sure we hide completely the view, including its shadow
+    hiddenYOrigin = -noticeViewHeight - 20.0;
+    
+    // Make and add the notice view
+    self.noticeView = [[WBYellowGradientView alloc]initWithFrame:CGRectMake(0.0, hiddenYOrigin, viewWidth, noticeViewHeight + 10.0)];
+    [view addSubview:self.noticeView];
+    
+    // Make and add the icon view
+    UIImageView *iconView = [[UIImageView alloc]initWithFrame:CGRectMake(10.0, 10.0, 20.0, 30.0)];
+    iconView.image = [UIImage imageWithContentsOfFile:noticeIconImageName];
+    iconView.contentMode = UIViewContentModeScaleAspectFit;
+    iconView.alpha = 0.8;
+    [self.noticeView addSubview:iconView];
+    
+    // Add the title label
+    [self.noticeView addSubview:self.titleLabel];
+    
+    // Add the drop shadow to the notice view
+    CALayer *noticeLayer = self.noticeView.layer;
+    noticeLayer.shadowColor = [[UIColor blackColor]CGColor];
+    noticeLayer.shadowOffset = CGSizeMake(0.0, 3);
+    noticeLayer.shadowOpacity = 0.50;
+    noticeLayer.masksToBounds = NO;
+    noticeLayer.shouldRasterize = YES;
+    
+    self._duration = duration;
+    self._delay = delay;
+    self._alpha = alpha;
+    self._hiddenYOrigin = hiddenYOrigin;
+    
+    [self displayNoticeOfType:WBNoticeViewTypeSuccess duration:duration delay:delay origin:origin hiddenYOrigin:hiddenYOrigin alpha:alpha];
 }
 
 #pragma mark -

@@ -13,7 +13,8 @@
 typedef enum {
     WBNoticeViewTypeError = 0,
     WBNoticeViewTypeSuccess,
-    WBNoticeViewTypeSticky
+    WBNoticeViewTypeSticky,
+    WBNoticeViewTypeWarning
 } WBNoticeViewType;
 
 + (WBNoticeView *)defaultManager;
@@ -58,5 +59,17 @@ typedef enum {
                       duration:(float)duration
                          alpha:(float)alpha
                        yOrigin:(CGFloat)origin;
+
+// Warning notice methods
+
+- (void)showWarningNoticeInView:(UIView *)view
+                        message:(NSString *)message;
+
+- (void)showWarningNoticeInView:(UIView *)view
+                        message:(NSString *)message
+                       duration:(float)duration
+                          delay:(float)delay
+                          alpha:(float)alpha
+                        yOrigin:(CGFloat)origin;
 
 @end

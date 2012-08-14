@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C86D28D15CB05DC000FBF45 /* WBYellowGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C86D28C15CB05DC000FBF45 /* WBYellowGradientView.m */; };
+		2C86D29115CB0DA9000FBF45 /* WBWarningNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C86D29015CB0DA9000FBF45 /* WBWarningNoticeView.m */; };
 		592BDDE915645BEE00B78820 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 592BDDE115645BEE00B78820 /* Default.png */; };
 		592BDDEA15645BEE00B78820 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 592BDDE215645BEE00B78820 /* Default@2x.png */; };
 		592BDDEB15645BEE00B78820 /* NoticeView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 592BDDE415645BEE00B78820 /* NoticeView.bundle */; };
@@ -32,6 +34,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C86D28B15CB05DC000FBF45 /* WBYellowGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBYellowGradientView.h; sourceTree = "<group>"; };
+		2C86D28C15CB05DC000FBF45 /* WBYellowGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBYellowGradientView.m; sourceTree = "<group>"; };
+		2C86D28F15CB0DA8000FBF45 /* WBWarningNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBWarningNoticeView.h; sourceTree = "<group>"; };
+		2C86D29015CB0DA9000FBF45 /* WBWarningNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBWarningNoticeView.m; sourceTree = "<group>"; };
 		592BDDE115645BEE00B78820 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		592BDDE215645BEE00B78820 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		592BDDE415645BEE00B78820 /* NoticeView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NoticeView.bundle; sourceTree = "<group>"; };
@@ -105,6 +111,8 @@
 				746CBD071570A8FA00B844B1 /* WBSuccessNoticeView.m */,
 				748A6A5B157D0D06003C7655 /* WBStickyNoticeView.h */,
 				748A6A5C157D0D06003C7655 /* WBStickyNoticeView.m */,
+				2C86D28F15CB0DA8000FBF45 /* WBWarningNoticeView.h */,
+				2C86D29015CB0DA9000FBF45 /* WBWarningNoticeView.m */,
 				746CBD051570A88800B844B1 /* Private */,
 			);
 			path = WBNoticeView;
@@ -181,6 +189,8 @@
 				748A6A58157D0B74003C7655 /* WBGrayGradientView.m */,
 				7492FA43157C8CD700FB834C /* WBRedGradientView.h */,
 				7492FA44157C8CD700FB834C /* WBRedGradientView.m */,
+				2C86D28B15CB05DC000FBF45 /* WBYellowGradientView.h */,
+				2C86D28C15CB05DC000FBF45 /* WBYellowGradientView.m */,
 			);
 			name = Private;
 			sourceTree = "<group>";
@@ -265,6 +275,8 @@
 				7492FA46157C8CD700FB834C /* WBRedGradientView.m in Sources */,
 				748A6A59157D0B74003C7655 /* WBGrayGradientView.m in Sources */,
 				748A6A5D157D0D06003C7655 /* WBStickyNoticeView.m in Sources */,
+				2C86D28D15CB05DC000FBF45 /* WBYellowGradientView.m in Sources */,
+				2C86D29115CB0DA9000FBF45 /* WBWarningNoticeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
