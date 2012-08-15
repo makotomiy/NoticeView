@@ -67,7 +67,7 @@
 
 - (IBAction)showSmallErrorNotice:(id)sender
 {
-    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:@"Check your network connection."];
+    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:@""];
     [notice show];
 }
 
@@ -147,8 +147,16 @@
 - (IBAction)showSmallWarningNotice:(id)sender
 {
     WBWarningNoticeView *notice = [WBWarningNoticeView warningNoticeInView:self.view title:@"Something went wrong!"];
-
     [notice show];
 }
 
+- (IBAction)showLargeWarningNotice:(id)sender
+{
+    WBWarningNoticeView *notice = [WBWarningNoticeView warningNoticeInView:self.view title:@"Bacon ipsum dolor sit amet corned beef ham tenderloin drumstick pork belly rump frankfurter."];
+    [notice show];
+}
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
+}
 @end

@@ -560,7 +560,7 @@
     CGFloat messageLineHeight = 30.0;
     
     // Make and add the title label
-    float titleYOrigin = 18.0;
+    float titleYOrigin = 15.0;
     self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(55.0, titleYOrigin, viewWidth - 70.0, 16.0)];
     self.titleLabel.textColor = [UIColor whiteColor];
     self.titleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
@@ -568,7 +568,21 @@
     self.titleLabel.font = [UIFont boldSystemFontOfSize:14.0];
     self.titleLabel.backgroundColor = [UIColor clearColor];
     self.titleLabel.text = title;
+
+    // Calculate the number of lines it'll take to display the text
+    numberOfLines = [[self.titleLabel lines]count];
+    self.titleLabel.numberOfLines = numberOfLines;
+    CGRect r = self.titleLabel.frame;
     
+    // This step is needed to avoid having the UILabel center the text in the middle
+    [self.titleLabel sizeToFit];
+    
+    // Now we can determine the height of one line of text
+    messageLineHeight = self.titleLabel.frame.size.height;
+    r.size.height = self.titleLabel.frame.size.height * numberOfLines;
+    r.size.width = viewWidth - 70.0;
+    self.titleLabel.frame = r;
+
     // Calculate the notice view height
     float noticeViewHeight = 40.0;
     float hiddenYOrigin = 0.0;
